@@ -50,6 +50,18 @@ void setup() {
       str = String (str + p.value().as<String>());
       Serial.println(str);
     }    
+    /*
+    When C++11 is not available
+    The code above leverages a C++11 feature called “range-based for loop”.
+    If you cannot enable C++11 on your compiler, you must use the following
+    syntax:    
+    for (JsonObject::iterator it=obj.begin(); it!=obj.end(); ++it) {
+      it->key() // is a JsonString
+      it->value() // is a JsonVariant
+    }
+    
+    */
+
   }
 
 void loop() {

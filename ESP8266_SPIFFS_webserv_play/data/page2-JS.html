@@ -1,0 +1,51 @@
+<html>
+ <head>
+ <title>Build a table</title>
+</head>
+ <body>
+Read from SPIFFS and substitute one instance of data on client-side using JS
+<table border='1'>
+    <!-- here goes our data! -->
+</table>
+
+<script>
+
+let headerItems = ["Row#", "Header2", "Header3"];
+
+let dataItems = %DATA%;
+
+function generateTableHead(table, data) 
+{
+  let thead = table.createTHead();
+  let row = thead.insertRow();
+  for (let element of data) 
+  {
+    let th = document.createElement("th");
+    let text = document.createTextNode(element);
+    th.appendChild(text);
+    row.appendChild(th);
+  }
+}
+
+function generateTableData(table, data) 
+{
+  for (let rowelement of data) 
+  {
+    let row = table.insertRow();
+    for (let element in rowelement) 
+	{
+      let cell = row.insertCell();
+      let text = document.createTextNode(rowelement[element]);
+      cell.appendChild(text);
+    }
+  }
+}
+
+let table = document.querySelector("table");
+//order may be reversed
+generateTableData(table, dataItems);
+generateTableHead(table, headerItems);
+
+</script>
+</body>
+</html>
